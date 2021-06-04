@@ -1,0 +1,23 @@
+Ferramentas externas usadas:
+    Modificação de vector images: https://vectorpaint.yaks.co.nz/
+
+Testar as functions crud.
+    add
+        validar limite de caracteres por cada campo
+        validar title de tool unico em tools
+        validar todas as tags unicas dentro da tool
+    delete
+    show
+implementar paginação
+Isolar as request da api e url em arquivo .env.
+validar campo de links.
+fazer reload por cada request na api.(SWR)
+
+
+implementar uma extenção exportadora de cores do Adobe XD
+
+FEITO
+criar states globais para compartilhar entre componentes.
+agrupar as cores em css root.
+implementar search.
+

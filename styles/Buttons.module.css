@@ -1,0 +1,82 @@
+.button, .remove, .add{
+  font-variant: "semi-bold";
+}
+
+.button.remove,
+button.remove {
+  background: var(--color-MostLightestRed);
+}
+
+button.add,
+.button.add {
+  background: var(--color-Blue);
+}
+
+.add {
+  color: var(--color-White);
+  transition: all 0.14s ease;
+}
+.add:hover {
+  background: var(--color-DarkBlue);
+}
+
+.add:active {
+  background: var(--color-DarkerBlue);
+}
+
+.add:disabled {
+  background: var(--color-LigtherBlue);
+}
+
+.remove {
+  color: var(--color-Red);
+  transition: all 0.14s ease;
+}
+
+button.remove:hover {
+  background: var(--color-LightestRed);
+}
+
+button.remove:active {
+  background: var(--color-LighterRed);
+}
+
+button.remove:disabled {
+  background: var(--MostLightestRed);
+  color: var(--LightRed);
+}
+
+.remove_light {
+  padding: calc(var(--smallest) / 3) calc(var(--smallest));
+  line-height: 1;
+  min-width: fit-content;
+  color: var(--color-Red);
+  background: var(--color-MostLightestRed);
+}
+
+.remove_light:active {
+  background: var(--color-LighterRed);
+}
+.remove_light:hover {
+  background: var(--color-LightestRed);
+}
+.remove_light:disabled {
+  background: var(--color-MostLightestRed);
+  color: var(--color-LighterRed);
+}
+
+.button {
+  padding: 18px 26px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  font-weight: 600;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  min-width: var(--min-width_button);
+  cursor: pointer;
+  transition: all 0.14s ease;
+}

@@ -1,0 +1,115 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap");
+
+:root {
+  --h1: 2.667rem;
+  --h2: 2rem;
+  --h3: 1.875rem;
+  --h4: 1.625rem;
+  --h5: 1.5rem;
+  --body: 1.25rem;
+  --small: 1.125rem;
+  --smallest: 1rem;
+
+  --max-width: 600px;
+  --min-width_button: 140px;
+
+  --color-White: #ffffff;
+  --color-DarkWhite: #fcfcfd;
+  --color-DarkerWhite: #f5f4f6;
+  --color-DarkestWhite: #ebeaed;
+  --color-MostDarkestWhite: #dedce1;
+
+  --color-MostLightestRed: #feefee;
+
+  --color-LighterInk: #b1adb9;
+  --color-LightInk: #8f8a9b;
+
+  --color-Blue: #365df0;
+  --color-DarkBlue: #2f55cc;
+  --color-DarkerBlue: #244aa8;
+  --color-LigtherBlue: #b9c6fa;
+
+  --color-Ink: #170c3a;
+
+  --color-Red: #f95e5a;
+  --color-LightRed: #fcaeac;
+  --color-LighterRed: #fcc6c5;
+  --color-LightestRed: #fcd7d6;
+  --color-MostLightestRed: #feefee;
+  --color-LightYellow:#FFDDA1;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Source Sans Pro", sans-serif;
+  box-sizing: border-box;
+  background: var(--color-DarkerWhite) 0% 0% no-repeat padding-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--color-Blue);
+  text-decoration: underline;
+}
+
+input[type="text"]::placeholder {
+  color: var(--color-LighterInk);
+}
+
+input[type="text"],
+textarea {
+  background: var(--color-DarkWhite);
+  border: 1px solid var(--color-DarkestWhite);
+  border-radius: 5px;
+}
+input[type="text"]:focus,
+textarea:focus {
+  background: var(--color-DarkestWhite);
+  color: var(--color-Ink);
+}
+
+input {
+  border: none;
+  outline: none;
+  background: var(--color-DarkerWhite);
+  color: var(--color-Ink);
+  box-sizing: border-box;
+}
+
+button {
+  padding: 12px 26px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  font-weight: 600;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  min-width: var(--min-width_button);
+
+  cursor: pointer;
+  transition: all 0.14s ease;
+}
+
+button:hover {
+  background: var(--color-MostDarkestWhite);
+}
+button:disabled {
+  cursor: default;
+  background: var(--color-DarkestWhite);
+}
+
+textarea {
+  outline: none;
+  font-family: "Source Sans Pro";
+  border: none;
+}
