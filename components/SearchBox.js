@@ -1,9 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "../styles/Home.module.css";
 import Image from "next/Image";
 
 export default function SearchBox({ state, search }) {
-  useEffect(() => {}, [state.searchTerm]);
+
+  const [searchBoxInputValue,setSearchBoxInputValue] = useState(state.searchTerm);
+  useEffect(() => {
+    setSearchBoxInputValue(state.searchTerm);
+  }, [state.searchTerm]);
   return (
     <label htmlFor="search" className={styles.search_box}>
       <Image
@@ -16,9 +20,9 @@ export default function SearchBox({ state, search }) {
 
       <input
         type="text"
-        className={styles.input}
+        className={styles.input} 
+        value={searchBoxInputValue}
         name="search"
-        defaultValue={state.searchTerm}
         placeholder="search"
         autoComplete="off"
         id="search"

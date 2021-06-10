@@ -35,16 +35,7 @@ export default function TopBarInput({
   }, [state.searchingByTag, prevScrollPos, handleScroll]);
 
   return (
-    <div
-
-      className={
-        // [
-        styles.top_bar
-        //   , visible ? styles.top_bar__sticky : ""].join(
-        //   " "
-        // )
-      }
-    >
+    <div className={styles.top_bar}>
       <div className={styles.search_controller}>
         <SearchBox {...{ state, search }} />
         <span>
@@ -55,7 +46,9 @@ export default function TopBarInput({
             defaultValue={state.searchingByTag}
             ref={CheckboxInputRef}
             onClick={() => {
-              toggleSearchByTag(CheckboxInputRef.current.checked);
+              toggleSearchByTag(
+                CheckboxInputRef.current.checked ? true : false
+              );
             }}
           />
           <label htmlFor="tag_only">search on tag only</label>

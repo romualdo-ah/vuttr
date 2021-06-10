@@ -54,7 +54,7 @@ export default function Modal(props) {
   const checkAllFieldsFilled = () => {
     setTool({
       ...tool,
-      title: titleInputRef.current.value,
+      title: titleInputRef&&titleInputRef.current.value,
       description: descriptionInputRef.current.value,
       link: linkInputRef.current.value,
     });
@@ -110,12 +110,15 @@ export default function Modal(props) {
   };
 
   const closeAndResetModal = () => {
-    titleInputRef.current.value = "";
-    descriptionInputRef.current.value = "";
-    tagInputRef.current.value = "";
-    linkInputRef.current.value = "";
-    setHasError(false);
-    props.showModal(false, null, false);
+    if(props.state.shouldShowModal){
+
+      titleInputRef.current.value = "";
+      descriptionInputRef.current.value = "";
+      tagInputRef.current.value = "";
+      linkInputRef.current.value = "";
+      setHasError(false);
+      props.showModal(false, null, false);
+    }
   };
 
   useEffect(() => {

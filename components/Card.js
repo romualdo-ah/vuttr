@@ -13,6 +13,15 @@ export default function Card({
   showModal,
   toggleSearchByTag,
 }) {
+  const imageStyles = {
+    width: "18px",
+    height: "18px",
+    minWidth: "initial",
+    maxWidth: "initial",
+    minHeight: "initial",
+    maxHeight: "initial",
+  };
+
   useEffect(() => {}, [state.searchingByTag, state.searchTerm, tool.tags]);
   return (
     <AnimatePresence exitBeforeEnter>
@@ -21,26 +30,31 @@ export default function Card({
         initial="initial"
         animate="animate"
         exit="exit"
-
         key={tool.id}
         className={styles.card}
       >
         <div className={styles.card_header}>
-          <div className={styles.title}>
-            <a className={styles.toolLink} href={tool.link} target="_blank">
-              {tool.title}
-            </a>
-          </div>
+          <a
+            className={styles.toolLink}
+            href={tool.link}
+            title={tool.link}
+            target="_blank"
+          >
+            {tool.title}
+          </a>
+
           <span
             className={[buttons_styles.remove, styles.remove].join(" ")}
             onClick={() => showModal(false, tool.id, true)}
           >
-            <Image
-              src="/Red_Close_2px.svg"
-              width={18}
-              height={18}
-              alt="close button"
-            />{" "}
+            <div style={imageStyles}>
+              <Image
+                src="/Red_Close_2px.svg"
+                width={18}
+                height={18}
+                alt="close button"
+              />
+            </div>{" "}
             Remove
           </span>
         </div>
@@ -64,6 +78,12 @@ export default function Card({
               </span>
             );
           })}
+          <style jsx>{`
+            img {
+              width: 18px;
+              height: 18px;
+            }
+          `}</style>
         </div>
       </motion.div>
     </AnimatePresence>

@@ -36,14 +36,16 @@
   --color-LighterRed: #fcc6c5;
   --color-LightestRed: #fcd7d6;
   --color-MostLightestRed: #feefee;
-  --color-LightYellow:#FFDDA1;
+  --color-LightYellow: #ffdda1;
 }
 
 * {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
 }
-
+html {
+  overflow-y: scroll;
+}
 html,
 body {
   padding: 0;

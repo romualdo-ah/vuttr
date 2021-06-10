@@ -9,40 +9,78 @@ import TopBarInput from "../components/TopBarInput.js";
 import { reducer, initialState } from "../reducers/toolReducer";
 
 import styles from "../styles/Home.module.css";
+import Pagination from "../components/Pagination";
 
-const default_url = "http://localhost:3000/tools";
-axios.defaults.baseURL = default_url;
+const defaultUrl =
+  "https://my-json-server.typicode.com/romualdo-ah/vuttr-json-server/";
 
 export default function Home() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [tools, setTools] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const numberOfElementsPerPage = 9;
+  const [totalCount, setTotalCount] = useState(0);
+  const [actualURL, setActualURL] = useState("");
 
-  const numberOfElementsPerPage = 5;
-
-  const getElementsOfCurrentPage = () => {
-    const elements = state.tools.slice(
-      numberOfElementsPerPage * (currentPage - 1),
-      numberOfElementsPerPage * currentPage
-    );
-      setTools(elements)
-    console.log(elements);
-  };
+  //could have first, prev, next and last api links pages.
+  const [fixedPageLinks,setFixedPageLinks]= useState([])
+  const [innerPageLinks, setLinks] = useState([]);
 
   useEffect(() => {
     if (state.tools.length === 0) {
-      axios
-        .get(default_url)
-        .then((response) => {
-          dispatch({ type: "FETCH_SUCCESS", payload: response.data });
-        })
-        .then(setTools(getElementsOfCurrentPage()));
+      const firstUrl =
+        defaultUrl +
+        `tools?_limit=${numberOfElementsPerPage}&_page=${currentPage}`;
+
+      loadApiTools(firstUrl);
     }
   }, [state.searchingByTag]);
 
   const handleSpace = (e) => {
     const keyCode = e.which || e.keyCode;
     keyCode === 27 && showModal(false, null, false);
+  };
+
+  const loadApiTools = (url) => {
+
+    if (url !== actualURL)
+      axios.get(url).then((response) => {
+        setActualURL(url);
+        dispatch({ type: "FETCH_SUCCESS", payload: response.data });
+        getLinks(response.headers);
+      });
+  };
+
+  const getLinks = (headers) => {
+    const innerPageLinks = headers["link"];
+    const _totalCount = headers["x-total-count"];
+
+    // console.log(headers);
+
+    setTotalCount(_totalCount);
+    const _numberOfPages = Math.ceil(_totalCount / numberOfElementsPerPage);
+    // console.log(_numberOfPages);
+
+    let _links = [];
+    for (let i = 1; i <= _numberOfPages; i++) {
+      _links.push([
+        defaultUrl + `tools?_limit=${numberOfElementsPerPage}&_page=${i}`,
+        i,
+      ]);
+    }
+    // console.log(_links);
+    const header_links = Object.fromEntries(
+      innerPageLinks.split(",").map((link) => {
+        const pair = link.replace("<", "").replace(">", "").trim().split(";");
+        pair[1] = pair[1].replace("rel=", "").replaceAll('"', "").trim();
+
+        return pair.reverse();
+      })
+    );
+
+    // console.log("header_links", header_links);
+    setFixedPageLinks(header_links);
+ 
+    setLinks(_links);
   };
 
   const showModal = (isAdding, id, shouldShowModal) => {
@@ -60,7 +98,7 @@ export default function Home() {
   };
 
   const addTool = (newTool) => {
-    axios.post(default_url, newTool).then((response) => {
+    axios.post(defaultUrl, newTool).then((response) => {
       dispatch({ type: "ADD_SUCCESS", payload: response.data });
     });
   };
@@ -76,7 +114,7 @@ export default function Home() {
     const tag_query = `?tags_like=`;
     if (searchTerm) {
       const query = `${searchingByTag ? tag_query : global_query}${searchTerm}`;
-      url_query = `${default_url}${query}`;
+      url_query = `${defaultUrl}${query}`;
     }
 
     axios.get(url_query).then((response) => {
@@ -118,6 +156,13 @@ export default function Home() {
                 }}
               />
             ))}
+            <Pagination
+              loadApiTools={loadApiTools}
+              innerPageLinks={innerPageLinks}
+              actualURL={actualURL}
+              fixedPageLinks={fixedPageLinks}
+              links={innerPageLinks}
+            />
           </div>
         )}
       </div>

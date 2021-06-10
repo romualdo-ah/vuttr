@@ -1,4 +1,6 @@
-.button, .remove, .add{
+.button,
+.remove,
+.add {
   font-variant: "semi-bold";
 }
 
@@ -79,4 +81,42 @@ button.remove:disabled {
   min-width: var(--min-width_button);
   cursor: pointer;
   transition: all 0.14s ease;
+}
+
+.pagination_button {
+  font-size: 18px;
+  font-family: "Source Sans Pro";
+  font-weight: 600;
+  color: var(--color-Blue);
+  letter-spacing: 0.36px;
+  cursor: pointer;
+}
+
+.inner_button_container{
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around;
+}
+
+.pagination_button.inner_button {
+width: var(--h1);
+height: var(--h1);
+align-items: center;
+justify-content:center;
+display:flex;
+border-radius: 100px;
+}
+
+.pagination_button.inner_button.activated {
+background-color: var(--color-DarkestWhite);
+color: var(--color-Ink);
+}
+
+.pagination_button.external_button.disabled {
+  color: var(--color-LigtherBlue);
+}
+
+.lessThan, .greaterThan{
+  font-family: monospace;
+  font-size: 18px;
 }
