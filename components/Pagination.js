@@ -10,6 +10,7 @@ function Pagination({
 }) {
   return (
     <div className={[styles.paginationContainer, styles.grid].join(" ")}>
+      
       <div
         onClick={() => {
           fixedPageLinks["prev"] != undefined &&
@@ -27,7 +28,7 @@ function Pagination({
 
       <div className={button_styles.inner_button_container}>
         {links.map((link, index) => {
-          console.log("rendering");
+         
           
           return (
             <div
@@ -45,18 +46,7 @@ function Pagination({
         })}
       </div>
 
-      {/* <div
-        onClick={() => {
-          loadApiTools(nextLink[0]);
-        }}
-        className={[
-          button_styles.pagination_button,
-          button_styles.inner_button,
-          nextLink[0] === actualURL ? button_styles.disabled : "",
-        ].join(" ")}
-      >
-        {nextLink[1]}
-      </div> */}
+     
       <div
         onClick={() => {
           fixedPageLinks["next"] && loadApiTools(fixedPageLinks["next"]);

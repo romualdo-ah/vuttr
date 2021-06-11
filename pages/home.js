@@ -12,7 +12,7 @@ import styles from "../styles/Home.module.css";
 import Pagination from "../components/Pagination";
 
 const defaultUrl =
-  "https://my-json-server.typicode.com/romualdo-ah/vuttr-json-server/";
+  "http://my-json-server.typicode.com/romualdo-ah/vuttr-json-server/";
 
 export default function Home() {
   const [state, dispatch] = useReducer(reducer, initialState);

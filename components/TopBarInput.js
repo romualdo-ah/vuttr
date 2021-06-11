@@ -12,27 +12,10 @@ export default function TopBarInput({
   toggleSearchByTag,
 }) {
   const CheckboxInputRef = useRef(null);
-  const [prevScrollPos, setPrevScrollPos] = useState(0);
-
-  const handleScroll = () => {
-    // find current scroll position
-    const currentScrollPos = window.pageYOffset;
-    const deltaScroll = prevScrollPos - currentScrollPos;
-
-    // console.log(deltaScroll);
-    // setVisible(deltaScroll > 0);
-
-    // set state to new scroll position
-    setPrevScrollPos(currentScrollPos);
-  };
 
   useEffect(() => {
     CheckboxInputRef.current.checked = state.searchingByTag;
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [state.searchingByTag, prevScrollPos, handleScroll]);
+  }, [state.searchingByTag]);
 
   return (
     <div className={styles.top_bar}>

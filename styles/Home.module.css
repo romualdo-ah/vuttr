@@ -149,6 +149,10 @@
   z-index: 2;
 }
 
+.top_bar.sticky{
+  position:fixed;
+}
+
 @keyframes sticky_bar {
   to {
     top: 0px;
